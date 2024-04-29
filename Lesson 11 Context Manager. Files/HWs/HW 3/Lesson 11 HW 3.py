@@ -19,8 +19,8 @@ players = ["Josh", "Luke", "Kate", "Mark", "Mary"]
 player_scores = []
 score = int()
 
-for player in players:
-    for round in range(1, 101):
+for round in range(1, 101):
+    for player in players:
         score = random.randint(0, 1000)
         player_scores.append([player, score])
     score = 0
