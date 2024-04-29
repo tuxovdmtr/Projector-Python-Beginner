@@ -9,5 +9,7 @@ print(ord("Z"))
 
 for i in range(65, 91):
     with open(f"{chr(i)}.txt", "a") as file:
-        file.write(str(random.randint(1, 100)))
-    
+        random_number = random.randint(1, 100)
+        file.write(str(random_number))
+    with open("summary.txt", "a") as summary:
+        summary.write(f"{chr(i)}.txt: {random_number}\n")
