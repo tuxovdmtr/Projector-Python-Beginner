@@ -22,11 +22,8 @@ class Student(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(50), nullable=False)
     age = Column(Integer, nullable=False)
-    
 
     subjects = relationship("Student_Subject", back_populates="student") 
-
-
 
 
 class Subject(Base):
@@ -54,42 +51,42 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# students_info = [
-#     {"name": "Bae", "age": 18},
-#     {"name": "Eddy", "age": 21},
-#     {"name": "Lily", "age": 22},
-#     {"name": "Jenny", "age": 19}
-# ]
+students_info = [
+    {"name": "Bae", "age": 18},
+    {"name": "Eddy", "age": 21},
+    {"name": "Lily", "age": 22},
+    {"name": "Jenny", "age": 19}
+]
 
-# subjects_info = [
-#     {"name": "English"},
-#     {"name": "Math"},
-#     {"name": "Spanish"},
-#     {"name": "Ukrainian"}
-# ]
+subjects_info = [
+    {"name": "English"},
+    {"name": "Math"},
+    {"name": "Spanish"},
+    {"name": "Ukrainian"}
+]
 
-# students_subjects_info = [
-#     {"student_id": 1, "subject_id": 1},
-#     {"student_id": 2, "subject_id": 2},
-#     {"student_id": 3, "subject_id": 3},
-#     {"student_id": 4, "subject_id": 4},
-#     {"student_id": 3, "subject_id": 1},
-#     {"student_id": 1, "subject_id": 3}
-# ]
+students_subjects_info = [
+    {"student_id": 1, "subject_id": 1},
+    {"student_id": 2, "subject_id": 2},
+    {"student_id": 3, "subject_id": 3},
+    {"student_id": 4, "subject_id": 4},
+    {"student_id": 3, "subject_id": 1},
+    {"student_id": 1, "subject_id": 3}
+]
 
-# for student_info in students_info:
-#     student = Student(name = student_info["name"], age = student_info["age"])
-#     session.add(student)
+for student_info in students_info:
+    student = Student(name = student_info["name"], age = student_info["age"])
+    session.add(student)
 
-# for subject_info in subjects_info:
-#     subject = Subject(name = subject_info["name"])
-#     session.add(subject)
+for subject_info in subjects_info:
+    subject = Subject(name = subject_info["name"])
+    session.add(subject)
 
-# for student_subject_info in students_subjects_info:
-#     student_subject = Student_Subject(student_id = student_subject_info["student_id"], subject_id = student_subject_info["subject_id"])
-#     session.add(student_subject)
+for student_subject_info in students_subjects_info:
+    student_subject = Student_Subject(student_id = student_subject_info["student_id"], subject_id = student_subject_info["subject_id"])
+    session.add(student_subject)
 
-# session.commit()
+session.commit()
 
 english_students = session.query(Student.name).join(Student_Subject).join(Subject).filter(Subject.name == 'English').all()
 print(english_students)
